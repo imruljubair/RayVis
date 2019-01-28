@@ -7,7 +7,6 @@ All the parameters are kept similar to the book. The program is written in Matla
 ![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/1.png)
 
 #How to:
-
 	Run rayvis.m
 
 # Note:
