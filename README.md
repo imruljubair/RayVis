@@ -4,10 +4,12 @@ This program visualizes a basic raytracing algorithm.This can be helpful for und
 For the algorithm, I follow chapter-4 of this book: https://www.cs.cornell.edu/~srm/fcg4/.
 All the parameters are kept similar to the book. The program is written in Matlab.
 
-![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/1.png)
+# How to:
 
-#How to:
 	Run rayvis.m
+
+![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/1.png)
+![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/3.png)
 
 # Note:
 	The program starts with some example inputs.
