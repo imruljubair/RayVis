@@ -8,13 +8,15 @@ All the parameters are kept similar to the book. The program is written in Matla
 
 	Run rayvis.m
 
-![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/1.png)
-![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/3.png)
+# Instructions:
 
-# Note:
 	The program starts with some example inputs.
 	Press 'Go' to see the simulated ray for current inputs.
 	You can change values and press 'Go' to see how the ray works.
 	However, you can press 'Reset' to reload the initial setup.
+
+![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/1.png)
+![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/3.png)
+
 
 Feel free to notify me any bug! :)
