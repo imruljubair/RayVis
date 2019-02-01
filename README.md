@@ -14,6 +14,7 @@ All the parameters are kept similar to the book. The program is written in Matla
 	Press 'Go' to see the simulated ray for current inputs.
 	You can change values and press 'Go' to see how the ray works.
 	However, you can press 'Reset' to reload the initial setup.
+	Check/ uncheck "show grid" before pressing "Go" to toggle between grid/ gridless image plane.
 
 ![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/1.png)
 ![Alt text](https://github.com/imruljubair/RayVis/blob/master/SS/3.png)
