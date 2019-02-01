@@ -22,7 +22,7 @@ function varargout = rayvis(varargin)
 
 % Edit the above text to modify the response to help rayvis
 
-% Last Modified by GUIDE v2.5 28-Jan-2019 22:40:11
+% Last Modified by GUIDE v2.5 01-Feb-2019 16:11:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -79,6 +79,31 @@ function buttonGo_Callback(hObject, eventdata, handles)
 %% Copyright: Mohammad Imrul Jubair (https://imruljubair.github.io/)
 %%
 
+global E;
+global U;
+global V;
+global W;
+global R,
+global c;
+global i;
+global j;
+global nx;
+global ny;
+global l;
+global r;
+global t;
+global b;
+global msg;
+
+global P1;
+global P2;
+global leni;
+global lenj;
+global e;
+global s;
+
+global gridshow;
+
 ex=str2num((get(handles.ex,'String')));
 ey=str2num((get(handles.ey,'String')));
 ez=str2num((get(handles.ez,'String')));
@@ -122,11 +147,25 @@ j=str2num((get(handles.j,'String')));
 nx=str2num((get(handles.nx,'String')));
 ny=str2num((get(handles.ny,'String')));
 
-[P1, P2]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j);
-p1 = ['(',num2str(P1(1)),', ',num2str(P1(2)),', ',num2str(P1(3)),')'];
-p2 = ['(',num2str(P2(1)),', ',num2str(P2(2)),', ',num2str(P2(3)),')'];
-set(handles.result, 'String', ['Intersected at: ',p1,' and ',p2]);
-set(handles.buttonRefresh,'visible','on')
+gridshow = get(handles.checkShowGrid,'Value');
+
+[P1, P2, e, s, leni, lenj]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j);
+visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny,leni,lenj,e,s,P1,P2, gridshow);
+
+et = "("+num2str(e(1))+", "+num2str(e(2))+", "+num2str(e(3))+")";
+pt1 = "("+num2str(P1(1))+", "+num2str(P1(2))+", "+num2str(P1(3))+")";
+pt2 = "("+num2str(P2(1))+", "+num2str(P2(2))+", "+num2str(P2(3))+")";
+msg = "Ray started at" + et +" on the image plane" +newline+ "And Intersected at "+pt1+" and "+pt2+ " with the sphere.";
+set(handles.result, 'String', msg);
+set(handles.buttonRefresh,'visible','on');
+% set(handles.buttonShowGrids,'visible','on');
+% set(handles.buttonGen,'visible','on');
+% set(handles.buttonShowGrids,'String','toggle grid');
+% if(gridshow==1)
+%     set(handles.buttonShowGrids,'String','disable grid');
+% else
+%      set(handles.buttonShowGrids,'String','enable grid');
+% end
 %%
 % hObject    handle to buttonGo (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -774,6 +813,110 @@ set(handles.j,'String','4');
 set(handles.nx,'String','10');
 set(handles.ny,'String','10');
 % 
-
-set(handles.result, 'String', '');
+% 
+% global E;
+% global U;
+% global V;
+% global W;
+% global R,
+% global c;
+% global i;
+% global j;
+% global nx;
+% global ny;
+% global l;
+% global r;
+% global t;
+% global b;
+% global msg;
+% global gridshow;
+% 
+% gridshow = get(handles.checkShowGrid,'Value');
+% [P1, P2, e, s, leni, lenj]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j);
+% visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny,leni,lenj,e,s,P1,P2, gridshow);
+% 
+% 
+% et = ['(',num2str(e(1)),', ',num2str(e(2)),', ',num2str(e(3)),')'];
+% pt1 = ['(',num2str(P1(1)),', ',num2str(P1(2)),', ',num2str(P1(3)),')'];
+% pt2 = ['(',num2str(P2(1)),', ',num2str(P2(2)),', ',num2str(P2(3)),')'];
+% 
+% set(handles.result, 'String', msg);
+% set(handles.buttonRefresh,'visible','on');
+% % set(handles.buttonShowGrids,'visible','on');
+% set(handles.buttonGen,'visible','on');
+%set(handles.buttonShowGrids,'String','toggle grid');
+% if(gridshow==1)
+%     set(handles.buttonShowGrids,'String','disable grid');
+% else
+%      set(handles.buttonShowGrids,'String','enable grid');
+% end
 buttonGo_Callback(hObject, eventdata, handles);
+
+
+% --- Executes on button press in buttonGen.
+function buttonGen_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonGen (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+ex=str2num((get(handles.ex,'String')));
+ey=str2num((get(handles.ey,'String')));
+ez=str2num((get(handles.ez,'String')));
+
+E = [ex; ey; ez];
+
+ux=str2num((get(handles.ux,'String')));
+uy=str2num((get(handles.uy,'String')));
+uz=str2num((get(handles.uz,'String')));
+
+U = [ux; uy; uz];
+
+vx=str2num((get(handles.vx,'String')));
+vy=str2num((get(handles.vy,'String')));
+vz=str2num((get(handles.vz,'String')));
+
+V = [vx; vy; vz];
+
+wx=str2num((get(handles.wx,'String')));
+wy=str2num((get(handles.wy,'String')));
+wz=str2num((get(handles.wz,'String')));
+
+W = [wx; wy; wz];
+
+l=str2num((get(handles.l,'String')));
+r=str2num((get(handles.r,'String')));
+t=str2num((get(handles.t,'String')));
+b=str2num((get(handles.b,'String')));
+
+cx=str2num((get(handles.cx,'String')));
+cy=str2num((get(handles.cy,'String')));
+cz=str2num((get(handles.cz,'String')));
+
+c = [cx; cy; cz];
+
+R=str2num((get(handles.R,'String')));
+
+i=str2num((get(handles.i,'String')));
+j=str2num((get(handles.j,'String')));
+
+nx=str2num((get(handles.nx,'String')));
+ny=str2num((get(handles.ny,'String')));
+
+allRay(R,c,E,U,V,W,l,r,t,b,nx,ny);
+
+
+% --- Executes on button press in buttonShowGrids.
+function buttonShowGrids_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonShowGrids (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+
+% --- Executes on button press in checkShowGrid.
+function checkShowGrid_Callback(hObject, eventdata, handles)
+% hObject    handle to checkShowGrid (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of checkShowGrid
