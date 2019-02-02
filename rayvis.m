@@ -97,8 +97,8 @@ global msg;
 
 global P1;
 global P2;
-global leni;
-global lenj;
+% global leni;
+% global lenj;
 global e;
 global s;
 
@@ -149,13 +149,13 @@ ny=str2num((get(handles.ny,'String')));
 
 gridshow = get(handles.checkShowGrid,'Value');
 
-[P1, P2, e, s, leni, lenj]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j);
-visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny,leni,lenj,e,s,P1,P2, gridshow);
+[P1, P2, e, s]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j);
+visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny,e,s,P1,P2, gridshow);
 
 et = "("+num2str(e(1))+", "+num2str(e(2))+", "+num2str(e(3))+")";
 pt1 = "("+num2str(P1(1))+", "+num2str(P1(2))+", "+num2str(P1(3))+")";
 pt2 = "("+num2str(P2(1))+", "+num2str(P2(2))+", "+num2str(P2(3))+")";
-msg = "Ray started at" + et +" on the image plane" +newline+ "And Intersected at "+pt1+" and "+pt2+ " with the sphere.";
+msg = ">> Ray started at" + et +" on the image plane." +newline+ ">> Intersected at "+pt1+" and "+pt2+ " with the sphere.";
 set(handles.result, 'String', msg);
 set(handles.buttonRefresh,'visible','on');
 % set(handles.buttonShowGrids,'visible','on');

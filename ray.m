@@ -5,7 +5,7 @@
 % All the parameters are kept similar to the book.
 % 
 %%
-function [P1, P2, e, s, leni, lenj]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j)
+function [P1, P2, e, s]=ray(R,c,E,U,V,W,l,r,t,b,nx,ny,i,j)
 %%
 % This function recieves necessary inputs from the user via GUI and invokes
 % relevant function to perform raytracing.
@@ -26,8 +26,8 @@ C = dot(e-c, e-c)-R^2;
 
 [P1, P2] = intersectPoint(e,s,A,B,C);
 
-leni = (r-l)/nx;
-lenj = (t-b)/ny;
+% leni = (r-l)/nx;
+% lenj = (t-b)/ny;
 
 % visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny,leni,lenj,e,s,P1,P2);
 

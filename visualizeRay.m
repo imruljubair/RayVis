@@ -1,6 +1,10 @@
-function visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny,leni,lenj,e,s,P1,P2, showgrid)
+function visualizeRay(R,c,E,U,V,l,r,t,b,nx,ny, e,s,P1,P2, showgrid)
 %% To visualize the raytracing simulation
 %%
+
+leni = (r-l)/nx;
+lenj = (t-b)/ny;
+
 ul = computeGrid(E,l,t,U,V);
 ll = computeGrid(E,l,b,U,V);
 ur = computeGrid(E,r,t,U,V);
